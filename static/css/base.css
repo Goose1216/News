@@ -3,6 +3,27 @@
    transition: all 0.2s ease;
  }
 
+.scale-item:active{
+   transform: scale(1.15);
+ }
+
 .tab{
     padding-left:21%;
+}
+
+.truncate {
+    margin: 0;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+   }
+
+.text-body {
+    text-decoration: none
+}
+
+.text-body:hover{
+    transform: scale(1.05);
+    transition: all 1s ease;
 }
