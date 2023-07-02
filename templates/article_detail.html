@@ -3,12 +3,13 @@
 {% block content %}
 <div class="container text-center">
     <h1> {{ object.title }} </h1>
-        <h4> by {{ object.author }} </h4>
+        <h4>by {{ object.author }}</h4>
         <p> {{ object.body }} </p>
         <p> {{ object.date }}</p>
         {% if user.username == object.author.username %}
-        <p> <a href = "{% url 'article_edit' article.pk %}">Edit</a> | <a href = "{% url 'article_delete' article.pk %}">Delete</a></p>
+        <p> <a class = "btn btn-dark" href = "{% url 'article_edit' article.pk %}">Edit</a>
+        <a class = "btn btn-dark" href = "{% url 'article_delete' article.pk %}">Delete</a></p>
         {% endif %}
-        <p> Back to <a href = "{% url 'article_list' %}">All articles</a></p>
+        <p> Back to <a class = "text-link" href = "{% url 'article_list' %}">All articles</a></p>
 </div>
 {% endblock %}

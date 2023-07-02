@@ -19,11 +19,13 @@
     overflow: hidden;
    }
 
-.text-body {
-    text-decoration: none
+
+.text-link {
+    text-decoration: none;
+    color: black;
 }
 
-.text-body:hover{
-    transform: scale(1.05);
-    transition: all 1s ease;
+.text-link:hover{
+    color: navy;
+    text-decoration: underline;
 }
