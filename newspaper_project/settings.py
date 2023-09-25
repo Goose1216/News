@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     #3-rd
     'bootstrap5',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
     #local
     'users',
@@ -150,3 +152,7 @@ EMAIL_HOST_PASSWORD = 'Ux3yEASw6LCHiVLkaqPQ'
 DEFAULT_FROM_EMAIL = 'leha.porublev@mail.ru'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
+
+#django crispy settings
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'

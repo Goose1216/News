@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 {% if user.username == article.author.username %}
     <h1>Edit</h1>
     <form action="" method="post"> {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-info ml-2" type="submit">Update</button>
-        <button class = 'btn btn-primary' type = 'reset'>Cancel</button>
+        {{ form|crispy }}
+        <button class="btn btn-dark scale-item" type="submit">Update</button>
+        <button class = 'btn btn-dark scale-item' type = 'reset'>Cancel</button>
     </form>
 {% else %}
 <div class = 'container'>
