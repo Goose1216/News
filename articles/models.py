@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
-
+from django.template.defaultfilters import slugify
 
 class Article(models.Model):
     title = models.CharField(max_length=255, unique=True)
@@ -11,6 +11,7 @@ class Article(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    slug = models.SlugField(blank=True, unique=True, editable=False, default='_')
 
     class Meta:
         ordering = ['date']
@@ -19,7 +20,11 @@ class Article(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('article_detail', args=[str(self.id)])
+        return reverse('article_detail', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 
 class Comment(models.Model):
@@ -35,4 +40,4 @@ class Comment(models.Model):
         return self.comment
 
     def get_absolute_url(self):
-        return reverse('article_detail', args=[str(self.article.id)])
+        return reverse('article_detail', kwargs={'slug': self.article.slug})

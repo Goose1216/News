@@ -8,7 +8,7 @@
         <div class = "container">
             <div class="card">
                 <div class = "card-header">
-                    <a class = "text-link font-weight-bold" href="{% url 'article_detail' article.pk %}"> {{ article.title }}</a>
+                    <a class = "text-link font-weight-bold" href="{% url 'article_detail' article.slug %}"> {{ article.title }}</a>
                     <span class = 'text-muted'> {{ article.author }} | {{ article.date }}</span>
                 </div>
                 <div class = 'card-body'>

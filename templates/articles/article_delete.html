@@ -6,7 +6,7 @@
     <form action="" method="post"> {% csrf_token %}
         <p>Are you sure you want to delete "{{ article.title }}"?</p>
         <button class="btn btn-danger ml-2" type="submit">Confirm</button>
-        <a href = "{% url 'article_detail' article.pk %}" ><button type="button" class="btn btn-primary">Cancel</button></a>
+        <a href = "{% url 'article_detail' article.slug %}" ><button type="button" class="btn btn-primary">Cancel</button></a>
     </form>
 {% else %}
 <div class = 'container'>
