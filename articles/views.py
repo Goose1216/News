@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from . import models
 
 
@@ -51,3 +52,16 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.article = models.Article.objects.get(slug=self.kwargs.get('slug'))
         return super().form_valid(form)
+
+
+class SearchResultsListView(ListView):
+    models = models.Article
+    template_name = 'articles/search_result.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        return models.Article.objects.filter(
+            Q(title__icontains=query) |
+            Q(author__username__icontains=query) |
+            Q(body__icontains=query)
+        )

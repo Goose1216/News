@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+    <h1 class = 'text-center mb-3'>Search Results</h1>
+    {% if object_list.all.count == 0 %}
+        <p class = 'text-muted text-center'> Oop! No one article found :( </p>
+    {% endif %}
+    {% for article in object_list %}
+        <div class = "container">
+            <div class="card">
+                <div class = "card-header">
+                    <a class = "text-link font-weight-bold" href="{% url 'article_detail' article.slug %}"> {{ article.title }}</a>
+                    <span class = 'text-muted'> {{ article.author }} | {{ article.date }}</span>
+                </div>
+                <div class = 'card-body'>
+                    <span class = "truncate"> {{ article.body }} </span>
+                </div>
+            </div>
+        </div>
+        <br />
+    {% endfor %}
+    <p class="text-center"> Back to <a class = "text-link" href = "{% url 'article_list' %}">All articles</a></p>
+{% endblock %}
