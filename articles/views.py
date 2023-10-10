@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,6 +16,15 @@ class ArticleListView(ListView):
 class ArticleDetailView(DetailView):
     model = models.Article
     template_name = 'articles/article_detail.html'
+
+    def post(self, request, *args, **kwargs):
+        if self.request.method == 'POST':
+            comment = self.request.POST.get('comment')
+            new_comment = models.Comment.objects.create(comment=comment,
+                                                       article=self.get_object(),
+                                                       author=self.request.user)
+            new_comment.save()
+            return redirect(self.request.path_info)
 
 
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
@@ -39,18 +49,6 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)
-
-
-class CommentCreateView(LoginRequiredMixin, CreateView):
-    model = models.Comment
-    template_name = 'articles/comment_new.html'
-    fields = ['comment', ]
-    login_url = 'login'
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        form.instance.article = models.Article.objects.get(slug=self.kwargs.get('slug'))
         return super().form_valid(form)
 
 

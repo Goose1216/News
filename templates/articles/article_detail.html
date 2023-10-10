@@ -22,7 +22,17 @@
     <p> {{ comment.author.username }} <span class = 'text-muted'>{{ comment.date }}</span> - {{ comment }}</p>
     {% endfor %}
     {% if user.is_authenticated %}
-    <a class = 'btn btn-dark scale-item' href = "{% url 'comment_new' article.slug %}">Add a new comment</a>
+    <form action="" method="post" id="comment" class="comment_form">{% csrf_token %}
+        <textarea class = 'd-flex my-2'
+                  rows="5"
+                  cols="60"
+                  name="comment"
+                  placeholder="Add a new comment"
+                  aria-label="comment"
+                  maxlength="256">
+        </textarea>
+        <button class = 'btn btn-dark scale-item' type ='submit'>Add a new comment</button>
+    </form>
     {% else %}
     <p> <a class = "btn btn-dark scale-item" href = "{% url 'login' %}">Log in</a> if you want to add a comment </p>
     {% endif %}

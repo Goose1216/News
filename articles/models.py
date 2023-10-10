@@ -41,4 +41,3 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return Article.objects.get(id=self.article_id).get_absolute_url()
-        #return reverse('article_detail', kwargs={'slug': self.article.slug})
