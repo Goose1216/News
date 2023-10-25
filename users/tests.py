@@ -40,7 +40,7 @@ class SignUpPageTests(TestCase):
 
     def test_signup_template(self):
         self.assertEqual(self.response.status_code, 200)
-        self.assertTemplateUsed(self.response, 'signup.html')
+        self.assertTemplateUsed(self.response, 'registation/gsignup.html')
 
     def test_signup_form(self):
         user = get_user_model().objects.create_user(self.username, self.email)

@@ -60,3 +60,7 @@ class ArticleTest(TestCase):
         self.assertNotContains(response, 'Edit')
         self.assertNotContains(response, 'Delete')
         self.assertNotContains(response, 'Add a new comment')
+
+    def test_paginate(self):
+        response = self.client.get(reverse('article_list'))
+        self.assertContains(response, 'Page 1 of 1')
