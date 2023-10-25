@@ -9,6 +9,7 @@ from . import models
 
 
 class ArticleListView(ListView):
+    paginate_by = 5
     model = models.Article
     template_name = 'articles/article_list.html'
 
