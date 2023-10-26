@@ -13,6 +13,17 @@ class ArticleListView(ListView):
     model = models.Article
     template_name = 'articles/article_list.html'
 
+    def get_queryset(self):
+        sort = self.request.GET.get('sort')
+        if sort is None: sort = 'date'
+        return models.Article.objects.order_by(sort)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        data = super().get_context_data(**kwargs)
+        sort = self.request.GET.get('sort')
+        if sort is None: sort = 'date'
+        data['sort'] = sort
+        return data
 
 class ArticleDetailView(DetailView):
     model = models.Article
