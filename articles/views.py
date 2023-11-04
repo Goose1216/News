@@ -16,6 +16,7 @@ class ArticleListView(ListView):
     def get_queryset(self):
         sort = self.request.GET.get('sort')
         if sort is None: sort = 'date'
+        if sort == 'author': sort = 'author__username'
         return models.Article.objects.order_by(sort)
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -65,13 +66,25 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
 
 class SearchResultsListView(ListView):
+    paginate_by = 5
     models = models.Article
     template_name = 'articles/search_result.html'
 
     def get_queryset(self):
+        sort = self.request.GET.get('sort')
+        if sort is None: sort = 'date'
         query = self.request.GET.get("q")
         return models.Article.objects.filter(
             Q(title__icontains=query) |
             Q(author__username__icontains=query) |
             Q(body__icontains=query)
         )
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        data = super().get_context_data(**kwargs)
+        sort = self.request.GET.get('sort')
+        query = self.request.GET.get("q")
+        if sort is None: sort = 'date'
+        data['sort'] = sort
+        data['query'] = query
+        return data
