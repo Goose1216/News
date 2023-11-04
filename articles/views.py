@@ -73,13 +73,13 @@ class SearchResultsListView(ListView):
     def get_queryset(self):
         sort = self.request.GET.get('sort')
         if sort is None: sort = 'date'
+        if sort == 'author': sort = 'author__username'
         query = self.request.GET.get("q")
         return models.Article.objects.filter(
             Q(title__icontains=query) |
             Q(author__username__icontains=query) |
             Q(body__icontains=query)
-        )
-
+        ).order_by(sort)
     def get_context_data(self, *, object_list=None, **kwargs):
         data = super().get_context_data(**kwargs)
         sort = self.request.GET.get('sort')
