@@ -3,7 +3,7 @@
 {% block title %}Search{% endblock title %}
 
 {% block content %}
-    <h1 class = 'text-center mb-3'>Search Results by "{{ queryg }}"</h1>
+    <h1 class = 'text-center mb-3'>Search Results by "{{ query }}"</h1>
     {% if object_list.all.count == 0 %}
         <p class = 'text-muted text-center'> Oop! No one article found :( </p>
     {% else %}
