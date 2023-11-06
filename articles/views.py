@@ -81,7 +81,8 @@ class SearchResultsListView(ListView):
             Q(title__icontains=query) |
             Q(author__username__icontains=query) |
             Q(body__icontains=query)
-        ).order_by(sort)
+        ).order_by(sort).select_related('author')
+
     def get_context_data(self, *, object_list=None, **kwargs):
         data = super().get_context_data(**kwargs)
         sort = self.request.GET.get('sort')
