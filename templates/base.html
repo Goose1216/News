@@ -64,14 +64,12 @@
                     href = "#">
                 {{ user.username }}</a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="userMenu">
-                    <li><a class="dropdown-item" href = "{% url 'password_change' %}">Change password</a></li>
-                    <li><a class="dropdown-item" href = "{% url 'logout' %}">Log out</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href = "{% url 'login' %}">Change account</a></li>
+                    <li><a class="dropdown-item" href = "{% url 'account_change_password' %}">Change password</a></li>
+                    <li><a class="dropdown-item" href = "{% url 'account_logout' %}">Log out</a></li>
                 </ul>
             </div>
         {% else %}
-            <a href="{% url 'login' %}" class="btn btn-outline-secondary scale-item me-2">Log in</a>
+            <a href="{% url 'account_login' %}" class="btn btn-outline-secondary scale-item me-2">Log in</a>
             <a href="{% url 'signup' %}" class="btn btn-primary scale-item">Sign up</a>
         {% endif %}
     </div>

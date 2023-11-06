@@ -148,20 +148,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-#EMAIL settings
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_HOST_USER = 'leha.porublev@mail.ru'
-EMAIL_HOST_PASSWORD = 'Ux3yEASw6LCHiVLkaqPQ'
-DEFAULT_FROM_EMAIL = 'leha.porublev@mail.ru'
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-
-#django crispy settings
-CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
-
 #Django-allauth settings
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
@@ -169,3 +155,20 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+#EMAIL settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_HOST_USER = 'leha.porublev@mail.ru'
+EMAIL_HOST_PASSWORD = 'Ux3yEASw6LCHiVLkaqPQ'
+DEFAULT_FROM_EMAIL = 'admin@Django_NewsPaper'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+
+#django crispy settings
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
