@@ -10,3 +10,6 @@ services:
       - .:/news
     ports:
       - '8000:8000'
+    environment:
+      - 'DJANGO_SECRET_KEY=django-insecure-j6b4o8+tr19981jjdij_qzucyz^st#&fhtp@1!d&sp@(t7m)&t'
+      - 'DJANGO_DEBUG=True'
