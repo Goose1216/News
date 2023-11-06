@@ -17,7 +17,7 @@ class ArticleListView(ListView):
         sort = self.request.GET.get('sort')
         if sort is None: sort = 'date'
         if sort == 'author': sort = 'author__username'
-        return models.Article.objects.order_by(sort)
+        return models.Article.objects.order_by(sort).select_related('author')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         data = super().get_context_data(**kwargs)
@@ -29,6 +29,8 @@ class ArticleListView(ListView):
 class ArticleDetailView(DetailView):
     model = models.Article
     template_name = 'articles/article_detail.html'
+    queryset = models.Article.objects.all().prefetch_related('comments__author')
+
 
     def post(self, request, *args, **kwargs):
         if self.request.method == 'POST':

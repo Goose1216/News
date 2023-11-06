@@ -35,7 +35,7 @@
             <div class="card">
                 <div class = "card-header">
                     <a class = "text-link font-weight-bold" href="{% url 'article_detail' article.slug %}"> {{ article.title }}</a>
-                    <span class = 'text-muted'> {{ article.author }} | {{ article.date }}</span>
+                    <span class = 'text-muted'> {{ article.author.username }} | {{ article.date }}</span>
                 </div>
                 <div class = 'card-body'>
                     <span class = "truncate"> {{ article.body }} </span>
