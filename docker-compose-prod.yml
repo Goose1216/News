@@ -14,8 +14,3 @@ services:
       - 'ENVIRONMENT = production'
       - 'DJANGO_SECRET_KEY=django-insecure-j6b4o8+tr19981jjdij_qzucyz^st#&fhtp@1!d&sp@(t7m)&t'
       - 'DJANGO_DEBUG=False'
-      - 'DJANGO_SECURE_HSTS_SECONDS=2592000'
-      - 'DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=True'
-      - 'DJANGO_SECURE_HSTS_PRELOAD=True'
-      - 'DJANGO_SESSION_COOKIE_SECURE=True'
-      - 'DJANGO_CSRF_COOKIE_SECURE=True'
