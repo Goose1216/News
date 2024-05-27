@@ -12,8 +12,8 @@ services:
       - '8000:8000'
     environment:
       - 'ENVIRONMENT=local'
-      - 'DJANGO_SECRET_KEY=django-insecure-j6b4o8+tr19981jjdij_qzucyz^st#&fhtp@1!d&sp@(t7m)&t'
+      - 'DJANGO_SECRET_KEY=you_key'
       - 'DJANGO_DEBUG=True'
-      - 'EMAIL_HOST_USER=leha.porublev@mail.ru'
-      - 'EMAIL_HOST_PASSWORD=rPMfb0p8AhBmFNqVJkt6'
-      - 'DEFAULT_FROM_EMAIL=leha.porublev@mail.ru'
+      - 'EMAIL_HOST_USER=you_email'
+      - 'EMAIL_HOST_PASSWORD=you_password'
+      - 'DEFAULT_FROM_EMAIL=you_email'
